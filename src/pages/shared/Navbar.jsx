@@ -37,7 +37,7 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className={`navbar-container py-3 ${isHome ? 'absolute' : 'relative bg-base-100'} top-0 left-0 w-full z-10`}>
+        <div className={`navbar-container py-3 ${isHome ? 'absolute' : 'relative bg-base-200'} top-0 left-0 w-full z-10`}>
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -57,7 +57,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-[#262727] rounded-box z-[1] mt-3 w-52 p-2 shadow text-black">
+                            className="menu menu-sm dropdown-content bg-[#262727] rounded-box z-[1] mt-3 w-52 p-2 shadow text-base-content">
                             {links}
                         </ul>
                     </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 text-lg text-black">
+                    <ul className="menu menu-horizontal px-1 text-lg text-base-content">
                         {links}
                     </ul>
                 </div>
@@ -122,13 +122,13 @@ const Navbar = () => {
                             </div>
                             <button
                                 onClick={handleLogout}
-                                className="bg-none text-lg font-semibold text-black px-4 py-2 rounded-full border hover:bg-[#FF6363] hover:text-white transition-all duration-300"
+                                className="bg-none text-lg font-semibold text-base-content px-4 py-2 rounded-full border hover:bg-[#FF6363] hover:text-white transition-all duration-300"
                             >
                                 Logout
                             </button>
                         </div>
                     ) : (
-                        <div className='flex gap-2'><NavLink state={{ from: location }} to="login" className="bg-none text-lg font-semibold text-black px-4 py-2 rounded-full border hover:bg-[#FF6363] hover:text-white transition-all duration-300">Login</NavLink></div>
+                        <div className='flex gap-2'><NavLink state={{ from: location }} to="login" className="bg-none text-lg font-semibold text-base-content px-4 py-2 rounded-full border hover:bg-[#FF6363] hover:text-white transition-all duration-300">Login</NavLink></div>
                     )}
                 </div>
             </div>
