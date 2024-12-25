@@ -6,6 +6,7 @@ import AuthContext from '../../context/AuthContext/AuthContext';
 const Navbar = () => {
     const location = useLocation();
     const { user, handleLogout } = useContext(AuthContext);
+    // eslint-disable-next-line no-unused-vars
     const [showName, setShowName] = useState(false);
     const [theme, setTheme] = useState("light");
 
@@ -26,13 +27,13 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
 
-        <li><NavLink to="/findTutors">Find tutors</NavLink></li>
+        <li><NavLink to="/find-tutors">Find Tutors</NavLink></li>
 
         {
             user && <>
                 <li><NavLink to="/addTutorials">Add Tutorials</NavLink></li>
                 <li><NavLink to="/myTutorials">My Tutorials</NavLink></li>
-                <li><NavLink to="/myBookedTutors">My booked tutors</NavLink></li>
+                <li><NavLink to="/myBookedTutors">My booked Tutors</NavLink></li>
             </>
         }
     </>

@@ -47,6 +47,7 @@ const Register = () => {
                     setUser(updatedUser);
                 });
             })
+            // eslint-disable-next-line no-unused-vars
             .catch((error) => {
                 toast.error("This Email already in use");
             });
@@ -54,6 +55,7 @@ const Register = () => {
 
     const googleLoginHandler = () => {
         handleGoogleLogin()
+            // eslint-disable-next-line no-unused-vars
             .then(result => {
                 toast.success("Registration successful!");
             })
@@ -63,7 +65,7 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#FFF8E5] py-6">
+        <div className="min-h-screen bg-[#FFF8E5] py-14">
 
             <div className="card w-full mx-auto max-w-2xl shadow-xl bg-white flex flex-row rounded-none">
                 <div className='flex flex-col bg-[#002333] justify-center space-y-5 px-8'>
@@ -71,7 +73,7 @@ const Register = () => {
                     <div className='bg-[#FF6363] w-28 h-2 rounded-full'></div>
                     <p className='text-white text-lg font-semibold'>Join Langopia to learn your <br /> favorite language, connect <br /> with expert tutors, and explore <br /> quality tutorials—all <br /> in one place!</p>
                 </div>
-                <form onSubmit={handleSubmit} className="card-body">
+                <form onSubmit={handleSubmit} className="card-body bg-base-100">
                     <div className="form-control">
                         <label className="label">
                             <span className="">Name</span>

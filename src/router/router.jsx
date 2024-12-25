@@ -7,6 +7,10 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AddTutorials from "../pages/AddTutorials/AddTutorials";
+import FindTutors from "../pages/FindTutors/FindTutors";
+import MyTutorials from "../pages/MyTutorials/MyTutorials";
+import MyBookedTutors from "../pages/MyBookedTutors/MyBookedTutors";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -28,8 +32,20 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: 'addTutorials',
-                element: <AddTutorials></AddTutorials>
+                path: '/find-tutors',
+                element: <FindTutors></FindTutors>
+            },
+            {
+                path: '/addTutorials',
+                element: <PrivateRoute><AddTutorials></AddTutorials></PrivateRoute>
+            },
+            {
+                path: '/myTutorials',
+                element: <PrivateRoute><MyTutorials></MyTutorials></PrivateRoute>
+            },
+            {
+                path: '/myBookedTutors',
+                element: <PrivateRoute><MyBookedTutors></MyBookedTutors></PrivateRoute>
             }
         ]
     },

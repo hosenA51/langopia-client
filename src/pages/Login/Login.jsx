@@ -37,14 +37,14 @@ const Login = () => {
             });
     };
     return (
-        <div className='min-h-screen py-6 md:py-20 bg-[#FFF8E5]'>
+        <div className='py-6 md:py-14 bg-[#FFF8E5]'>
             <div className="card w-full mx-auto max-w-2xl shadow-xl bg-white flex flex-row rounded-none">
                 <div className='flex flex-col bg-[#002333] justify-center space-y-5 pl-6'>
                     <h1 className='text-2xl text-white font-bold'>Welcome Back to Langopia</h1>
                     <div className='bg-[#FF6363] w-28 h-2 rounded-full'></div>
                     <p className='text-white text-lg font-semibold'>Sign in to continue to your <br /> account.</p>
                 </div>
-                <form onSubmit={handleSubmit} className="card-body">
+                <form onSubmit={handleSubmit} className="card-body bg-base-100">
                     <div className="form-control">
                         <label className="label">
                             <span className="">Email</span>
