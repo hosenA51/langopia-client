@@ -1,0 +1,44 @@
+.profile-container {
+    position: relative;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 0 8px;
+}
+
+.profile-container img {
+    transition: opacity 0.3s ease-in-out;
+    justify-content: center;
+}
+
+.profile-container span {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 16px; 
+    font-weight: 600; 
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+}
+
+.profile-container:hover img {
+    opacity: 0;
+}
+
+.profile-container:hover span {
+    opacity: 1;
+}
+
+.nav-link {
+    color: gray;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
