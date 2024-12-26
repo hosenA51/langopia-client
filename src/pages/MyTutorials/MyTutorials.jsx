@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyTutorials = () => {
     const { user } = useAuth();
@@ -37,7 +38,6 @@ const MyTutorials = () => {
                         }
                     });
             }
-            console.log("Deleting ID:", _id);
         });
     };
 
@@ -79,11 +79,12 @@ const MyTutorials = () => {
                                 >
                                     <MdDeleteForever />
                                 </button>
-                                <button
+                               <Link to={`/updateTutorials/${tutorial._id}`}>
+                               <button
                                     className="text-xl text-green-500"
                                 >
                                     <MdEditSquare />
-                                </button>
+                                </button></Link>
                             </td>
                         </tr>
                     ))}

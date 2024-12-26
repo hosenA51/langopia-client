@@ -1,11 +1,15 @@
-import Swal from 'sweetalert2';
+import { useLoaderData } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
-const AddTutorials = () => {
-    const navigate = useNavigate();
+import Swal from 'sweetalert2';
+
+const UpdateTutorials = () => {
+    const tutorial = useLoaderData();
     const { user } = useAuth();
 
-    const handleAddTutorials = event => {
+    const { _id, language, price, image, description } = tutorial || {};
+
+
+    const handleUpdateTutorial = event => {
         event.preventDefault();
 
         const form = event.target;
@@ -14,45 +18,43 @@ const AddTutorials = () => {
         const email = form.email.value;
         const language = form.language.value;
         const price = form.price.value;
-        const review = form.review.value;
         const image = form.image.value;
         const description = form.description.value;
 
-        const newTutorials = { user, email, language, price, review, image, description }
+        const updatedTutorial = { user, email, language, price, image, description }
 
         // send data to the server
-        fetch('http://localhost:3000/tutorials', {
-            method: 'POST',
+        fetch(`http://localhost:3000/tutorials/${_id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(newTutorials)
+            body: JSON.stringify(updatedTutorial)
         })
             .then(res => res.json())
             .then(data => {
-                if (data.insertedId) {
+                if (data.modifiedCount > 0) {
                     Swal.fire({
                         title: 'Success!',
-                        text: 'Tutorials Added Successfully',
+                        text: 'Equipment Updated Successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
-                    navigate('/myTutorials')
                 }
             })
-
     }
+
     return (
         <div className='w-full bg-base-300 m-0 py-8'>
             <div className="card bg-[#BEAE96] lg:w-2/4 shrink-0 shadow-2xl mx-auto">
                 <div className="w-full rounded-t-2xl text-center mx-auto bg-[#2A2B29]">
-                    <h1 className="text-4xl font-bold my-6 text-gray-300">Add Tutorials</h1>
+                    <h1 className="text-4xl font-bold my-6 text-gray-300">Update Tutorials</h1>
                     <p className="mb-6 text-[#FF6363]">
-                        Add your tutorials effortlessly by providing your tutorial image, language, <br /> price, description, and initial review. Share your knowledge and connect with learners worldwide!
+                        Here you can edit your tutorial details. Update the tutorial’s name, language, <br /> price, image URL, and description to keep your information up-to-date.
                     </p>
                 </div>
                 <form
-                    onSubmit={handleAddTutorials}
+                    onSubmit={handleUpdateTutorial}
                     className="card-body">
                     {/* first row */}
                     <div className='flex flex-col lg:flex-row gap-5'>
@@ -77,13 +79,13 @@ const AddTutorials = () => {
                             <label className="label">
                                 <span className="text-lg font-medium">Language</span>
                             </label>
-                            <input type="text" name='language' placeholder="Language" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                            <input type="text" name='language' defaultValue={language} placeholder="Language" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="text-lg font-medium">Price</span>
                             </label>
-                            <input type="text" name='price' placeholder="Price" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                            <input type="text" name='price' defaultValue={price} placeholder="Price" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
                     </div>
                     {/*third row */}
@@ -92,13 +94,13 @@ const AddTutorials = () => {
                             <label className="label">
                                 <span className="text-lg font-medium">Review</span>
                             </label>
-                            <input type="text" name='review' placeholder="Review" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" defaultValue={0} required />
+                            <input type="text" name='review' placeholder="Review" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" defaultValue={0} required readOnly />
                         </div>
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="text-lg font-medium">Image URL</span>
                             </label>
-                            <input type="text" name='image' placeholder="Image URL" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                            <input type="text" name='image' defaultValue={image} placeholder="Image URL" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
                     </div>
                     {/*fourth row */}
@@ -106,10 +108,10 @@ const AddTutorials = () => {
                         <label className="label">
                             <span className="text-lg font-medium">Description</span>
                         </label>
-                        <input type="text" name='description' placeholder="Description" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                        <input type="text" name='description' defaultValue={description} placeholder="Description" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-outline bg-base-300 text-[#FF6363] px-6 py-2 rounded-full hover:bg-[#FF6363] hover:text-gray-100 transition-all duration-300 text-lg">Submit</button>
+                        <button className="btn btn-outline bg-base-300 text-[#FF6363] px-6 py-2 rounded-full hover:bg-[#FF6363] hover:text-gray-100 transition-all duration-300 text-lg">Update</button>
                     </div>
                 </form>
             </div>
@@ -117,4 +119,4 @@ const AddTutorials = () => {
     );
 };
 
-export default AddTutorials;
+export default UpdateTutorials;

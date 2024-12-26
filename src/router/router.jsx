@@ -11,6 +11,7 @@ import FindTutors from "../pages/FindTutors/FindTutors";
 import MyTutorials from "../pages/MyTutorials/MyTutorials";
 import MyBookedTutors from "../pages/MyBookedTutors/MyBookedTutors";
 import PrivateRoute from "./PrivateRoute";
+import UpdateTutorials from "../pages/UpdateTutorials/UpdateTutorials";
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,13 @@ const router = createBrowserRouter([
             {
                 path: '/myBookedTutors',
                 element: <PrivateRoute><MyBookedTutors></MyBookedTutors></PrivateRoute>
+            },
+            {
+                path: "/updateTutorials/:id",
+                element: <PrivateRoute>
+                    <UpdateTutorials></UpdateTutorials>
+                </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/tutorials/${params.id}`)
             }
         ]
     },
