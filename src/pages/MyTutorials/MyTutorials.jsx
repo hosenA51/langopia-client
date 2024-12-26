@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const MyTutorials = () => {
     const { user } = useAuth();
@@ -11,6 +12,35 @@ const MyTutorials = () => {
             .then(res => res.json())
             .then(data => setTutorials(data))
     }, [user.email])
+
+    const handleDelete = _id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/tutorials/${_id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire("Deleted!", "Your tutorial has been deleted.", "success");
+                            setTutorials(tutorials.filter((tutorial) => tutorial._id !== _id));
+                        } else {
+                            Swal.fire("Error!", "Failed to delete the tutorial.", "error");
+                        }
+                    });
+            }
+            console.log("Deleting ID:", _id);
+        });
+    };
+
     return (
         <div className="container my-10">
             <table className="table">
@@ -45,7 +75,7 @@ const MyTutorials = () => {
                             <td className="flex flex-col gap-2 items-center">
                                 <button
                                     className="text-2xl text-orange-500"
-                                // onClick={() => handleDelete(tutorial.id)}
+                                    onClick={() => handleDelete(tutorial._id)}
                                 >
                                     <MdDeleteForever />
                                 </button>

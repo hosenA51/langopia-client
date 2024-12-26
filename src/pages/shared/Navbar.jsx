@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import "./Navbar.css"
-import AuthContext from '../../context/AuthContext/AuthContext';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
     const location = useLocation();
-    const { user, handleLogout } = useContext(AuthContext);
+    // const { user, handleLogout } = useContext(AuthContext);
+    const {user, handleLogout} = useAuth()
     // eslint-disable-next-line no-unused-vars
     const [showName, setShowName] = useState(false);
     const [theme, setTheme] = useState("light");
@@ -62,16 +63,16 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="h-16 hidden w-auto md:flex" href='/'>
+                    <a className="h-16 hidden w-auto md:flex items-center" href='/'>
                         <h1 className='text-[#FF6363] text-3xl font-extrabold'>Langopia</h1>
                     </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 text-lg text-base-content">
+                    <ul className="menu menu-horizontal px-0 text-[16px] text-base-content">
                         {links}
                     </ul>
                 </div>
-                <label className="grid cursor-pointer place-items-center mr-2 md:ml-60 lg:ml-40">
+                <label className="grid cursor-pointer place-items-center ml-4 mr-2">
                     <input
                         type="checkbox"
                         className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1"
