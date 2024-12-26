@@ -45,7 +45,7 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6 text-white"
+                                className="h-6 w-6 text-black"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -58,7 +58,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-[#262727] rounded-box z-[1] mt-3 w-52 p-2 shadow text-base-content">
+                            className="menu menu-sm dropdown-content bg-[#FFF8E5] rounded-box z-[1] mt-3 w-52 p-2 shadow text-base-content">
                             {links}
                         </ul>
                     </div>
@@ -117,7 +117,7 @@ const Navbar = () => {
                                     alt="User Profile"
                                     className="w-12 h-12 rounded-full transition-opacity duration-300 group-hover:opacity-0"
                                 />
-                                <span className="absolute inset-0 flex items-center justify-center text-black text-sm font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                <span className="absolute inset-0 flex items-center justify-center text-base-content text-sm font-semibold opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                     {user.displayName || "User"}
                                 </span>
                             </div>
