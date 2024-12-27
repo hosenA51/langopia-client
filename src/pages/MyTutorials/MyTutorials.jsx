@@ -60,7 +60,7 @@ const MyTutorials = () => {
                     {tutorials.map((tutorial, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{user.displayName}</td>
+                            <td>{tutorial.tutorialName}</td>
                             <td>
                                 <img
                                     src={tutorial.image}

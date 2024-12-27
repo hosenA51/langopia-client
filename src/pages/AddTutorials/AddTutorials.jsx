@@ -12,13 +12,14 @@ const AddTutorials = () => {
 
         const user = form.user.value;
         const email = form.email.value;
+        const tutorialName = form.tutorialName.value;
         const language = form.language.value;
         const price = form.price.value;
         const review = form.review.value;
         const image = form.image.value;
         const description = form.description.value;
 
-        const newTutorials = { user, email, language, price, review, image, description }
+        const newTutorials = { user, email, tutorialName, language, price, review, image, description }
 
         // send data to the server
         fetch('http://localhost:3000/tutorials', {
@@ -75,38 +76,46 @@ const AddTutorials = () => {
                     <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
-                                <span className="text-lg font-medium">Language</span>
+                                <span className="text-lg font-medium">Tutorial Name</span>
                             </label>
-                            <input type="text" name='language' placeholder="Language" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                            <input type="text" name='tutorialName' placeholder="Tutorial Name" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
                         <div className="form-control flex-1">
                             <label className="label">
-                                <span className="text-lg font-medium">Price</span>
+                                <span className="text-lg font-medium">Language</span>
                             </label>
-                            <input type="text" name='price' placeholder="Price" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                            <input type="text" name='language' placeholder="Language" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
                     </div>
                     {/*third row */}
                     <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
+                                <span className="text-lg font-medium">Price</span>
+                            </label>
+                            <input type="text" name='price' placeholder="Price" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                        </div>
+                        <div className="form-control flex-1">
+                            <label className="label">
                                 <span className="text-lg font-medium">Review</span>
                             </label>
                             <input type="text" name='review' placeholder="Review" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" defaultValue={0} required />
                         </div>
+                    </div>
+                    {/*fourth row */}
+                    <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="text-lg font-medium">Image URL</span>
                             </label>
                             <input type="text" name='image' placeholder="Image URL" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
-                    </div>
-                    {/*fourth row */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="text-lg font-medium">Description</span>
-                        </label>
-                        <input type="text" name='description' placeholder="Description" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                        <div className="form-control flex-1">
+                            <label className="label">
+                                <span className="text-lg font-medium">Description</span>
+                            </label>
+                            <input type="text" name='description' placeholder="Description" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                        </div>
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-outline bg-base-300 text-[#FF6363] px-6 py-2 rounded-full hover:bg-[#FF6363] hover:text-gray-100 transition-all duration-300 text-lg">Submit</button>

@@ -6,7 +6,7 @@ const UpdateTutorials = () => {
     const tutorial = useLoaderData();
     const { user } = useAuth();
 
-    const { _id, language, price, image, description } = tutorial || {};
+    const { _id, tutorialName, language, price, image, description } = tutorial || {};
 
 
     const handleUpdateTutorial = event => {
@@ -16,12 +16,13 @@ const UpdateTutorials = () => {
 
         const user = form.user.value;
         const email = form.email.value;
+        const tutorialName = form.tutorialName.value;
         const language = form.language.value;
         const price = form.price.value;
         const image = form.image.value;
         const description = form.description.value;
 
-        const updatedTutorial = { user, email, language, price, image, description }
+        const updatedTutorial = { user, email, tutorialName, language, price, image, description }
 
         // send data to the server
         fetch(`http://localhost:3000/tutorials/${_id}`, {
@@ -77,38 +78,48 @@ const UpdateTutorials = () => {
                     <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
+                                <span className="text-lg font-medium">Tutorial Name</span>
+                            </label>
+                            <input type="text" name='tutorialName' defaultValue={tutorialName} placeholder="Tutorial Name" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                        </div>
+                        <div className="form-control flex-1">
+                            <label className="label">
                                 <span className="text-lg font-medium">Language</span>
                             </label>
                             <input type="text" name='language' defaultValue={language} placeholder="Language" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
+
+                    </div>
+                    {/*third row */}
+                    <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="text-lg font-medium">Price</span>
                             </label>
                             <input type="text" name='price' defaultValue={price} placeholder="Price" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
-                    </div>
-                    {/*third row */}
-                    <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="text-lg font-medium">Review</span>
                             </label>
                             <input type="text" name='review' placeholder="Review" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" defaultValue={0} required readOnly />
                         </div>
+
+                    </div>
+                    {/*fourth row */}
+                    <div className='flex flex-col lg:flex-row gap-5'>
                         <div className="form-control flex-1">
                             <label className="label">
                                 <span className="text-lg font-medium">Image URL</span>
                             </label>
                             <input type="text" name='image' defaultValue={image} placeholder="Image URL" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
                         </div>
-                    </div>
-                    {/*fourth row */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="text-lg font-medium">Description</span>
-                        </label>
-                        <input type="text" name='description' defaultValue={description} placeholder="Description" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                        <div className="form-control flex-1">
+                            <label className="label">
+                                <span className="text-lg font-medium">Description</span>
+                            </label>
+                            <input type="text" name='description' defaultValue={description} placeholder="Description" className="input input-bordered rounded-2xl border-gray-500 border-t-4 bg-[#ECE9E1]" required />
+                        </div>
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn btn-outline bg-base-300 text-[#FF6363] px-6 py-2 rounded-full hover:bg-[#FF6363] hover:text-gray-100 transition-all duration-300 text-lg">Update</button>
