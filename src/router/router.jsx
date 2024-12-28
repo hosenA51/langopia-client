@@ -12,6 +12,7 @@ import MyTutorials from "../pages/MyTutorials/MyTutorials";
 import MyBookedTutors from "../pages/MyBookedTutors/MyBookedTutors";
 import PrivateRoute from "./PrivateRoute";
 import UpdateTutorials from "../pages/UpdateTutorials/UpdateTutorials";
+import Details from "../pages/Details/Details";
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <UpdateTutorials></UpdateTutorials>
                 </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:3000/tutorials/${params.id}`)
+            },
+            {
+                path: "/tutor/details/:id",
+                element: <PrivateRoute><Details></Details></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:3000/tutorials/${params.id}`)
             }
         ]

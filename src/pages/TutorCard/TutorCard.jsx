@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const TutorCard = ({tutorial}) => {
 
-    const { _id, tutorialName, language, price, image, description } = tutorial || {};
+    const { _id, tutorialName, language, price, image, review } = tutorial || {};
 
     return (
         <div className="card card-side bg-base-100 shadow-xl w-full">
@@ -17,9 +17,10 @@ const TutorCard = ({tutorial}) => {
             <div className="card-body flex-1 py-3">
                 <h2 className="card-title">
                     {tutorialName}
-                    <div className="badge badge-secondary h-fit">{language}</div>
+                    
                 </h2>
-                <p className='text-gray-500'>{description}</p>
+                <h4 className="text-lg flex justify-between">Language: <span className='text-[#FF6363]'>{language}</span></h4>
+                <p className='text-lg flex justify-between'>Review: <span className='text-[#FF6363]'>{review}</span></p>
                 <div className="flex justify-between">
                     <p>Price: ${price}</p>
                 </div>
@@ -28,7 +29,7 @@ const TutorCard = ({tutorial}) => {
                     className='flex-1' 
                     to={`/tutor/details/${_id}`}
                     >
-                        <button className="btn btn-sm btn-outline btn-success rounded-full w-full">Update</button>
+                        <button className="btn btn-sm btn-outline rounded-full w-full text-[#FF6363] hover:bg-[#FF6363]">Details</button>
                     </Link>
                 </div>
             </div>
