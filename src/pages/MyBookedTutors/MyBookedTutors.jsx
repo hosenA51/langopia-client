@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const MyBookedTutors = () => {
     const { user } = useAuth();
@@ -20,19 +21,32 @@ const MyBookedTutors = () => {
     }, [user?.email]);
 
 
-    const handleReview = async (id) => {
-        const response = await fetch(`http://localhost:3000/tutorials/review/${id}`, {
+    const handleReview = (tutorId) => {
+        fetch(`http://localhost:3000/tutorials/${tutorId}/review`, {
             method: 'PATCH',
-        });
-
-        const data = await response.json();
-        if (data.modifiedCount > 0) {
-            alert('Review added successfully!');
-            fetch('http://localhost:3000/find-tutors')
-                .then(res => res.json())
-                .then(data => setTutorials(data));
-        }
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    Swal.fire('Success!', 'Review updated successfully.', 'success');
+                    setBookedTutors((prev) =>
+                        prev.map((tutor) =>
+                            tutor.tutorId === tutorId
+                                ? { ...tutor, review: parseInt(tutor.review) + 1 }
+                                : tutor
+                        )
+                    );
+                } else {
+                    Swal.fire('Error!', data.message, 'error');
+                }
+            })
+            .catch((error) => {
+                console.error('Error updating review:', error);
+                Swal.fire('Error!', 'Failed to submit the review.', 'error');
+            });
     };
+
+
 
     return (
         <div className='bg-base-300 py-16'>
@@ -60,7 +74,10 @@ const MyBookedTutors = () => {
                                 </div>
                             </div>
                             <div className='flex justify-center my-4 p-0'>
-                                <button className='btn btn-outline text-[#FF6363] text-lg hover:bg-[#FF6363]'>Review</button>
+                                <button
+                                    className='btn btn-outline text-[#FF6363] text-lg hover:bg-[#FF6363]'
+                                    onClick={() => handleReview(tutor.tutorId)}
+                                >Review</button>
                             </div>
                         </div>
                     ))}
