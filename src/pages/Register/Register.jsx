@@ -5,63 +5,90 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FcGoogle } from 'react-icons/fc';
 import AuthContext from '../../context/AuthContext/AuthContext';
-import auth from '../../firebase/firebase.init';
 
 const Register = () => {
+    const navigate = useNavigate();
     const { handleGoogleLogin, createUser, manageProfile, setUser } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
     const location = useLocation();
-    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setError("")
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
         const name = e.target.name.value;
         const email = e.target.email.value;
         const photo = e.target.photo.value;
         const password = e.target.password.value;
-
+    
         if (password.length < 6) {
             toast.error("Password must contain at least 6 characters");
             return;
         }
         if (!/[A-Z]/.test(password)) {
-            toast.error("Password must contain at least one Uppercase letter");
+            toast.error("Password must contain at least one uppercase letter");
             return;
         }
         if (!/[a-z]/.test(password)) {
-            toast.error("Password must contain at least one Lowercase letter");
+            toast.error("Password must contain at least one lowercase letter");
             return;
         }
-        createUser(email, password)
-            .then(() => {
+    
+        try {
+            const response = await fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
                 toast.success("Registration successful!");
-
-                manageProfile(name, photo).then(() => {
-                    const updatedUser = {
-                        ...auth.currentUser,
-                        displayName: name,
-                        photoURL: photo,
-                    };
-                    setUser(updatedUser);
+    
+                await createUser(email, password);
+    
+                await manageProfile(name, photo);
+    
+                setUser({
+                    displayName: name,
+                    email: email,
+                    photoURL: photo,
                 });
-            })
-            // eslint-disable-next-line no-unused-vars
-            .catch((error) => {
-                toast.error("This Email already in use");
-            });
-    }
 
-    const googleLoginHandler = () => {
-        handleGoogleLogin()
-            // eslint-disable-next-line no-unused-vars
-            .then(result => {
-                toast.success("Registration successful!");
-            })
-            .catch(err => {
-                setError(err.message)
-            });
+            } else {
+                throw new Error(data.message || "Registration failed.");
+            }
+        } catch (err) {
+            toast.error(err.message || "An unexpected error occurred.");
+        }
+    };
+    
+
+    const validatePassword = (password) => {
+        if (password.length < 6) {
+            toast.error("Password must contain at least 6 characters");
+            return false;
+        }
+        if (!/[A-Z]/.test(password)) {
+            toast.error("Password must contain at least one uppercase letter");
+            return false;
+        }
+        if (!/[a-z]/.test(password)) {
+            toast.error("Password must contain at least one lowercase letter");
+            return false;
+        }
+        return true;
+    };
+
+    const googleLoginHandler = async () => {
+        try {
+            await handleGoogleLogin();
+            toast.success("Login successful!");
+            navigate('/');
+        } catch (err) {
+            toast.error(err.message || "Google login failed.");
+        }
     };
 
     return (

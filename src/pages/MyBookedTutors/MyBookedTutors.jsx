@@ -22,27 +22,19 @@ const MyBookedTutors = () => {
 
 
     const handleReview = (tutorId) => {
-        fetch(`http://localhost:3000/tutorials/${tutorId}/review`, {
+        fetch(`http://localhost:3000/tutorials/${tutorId.toString()}/review`, {
             method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ review: 1 })
         })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.success) {
-                    Swal.fire('Success!', 'Review updated successfully.', 'success');
-                    setBookedTutors((prev) =>
-                        prev.map((tutor) =>
-                            tutor.tutorId === tutorId
-                                ? { ...tutor, review: parseInt(tutor.review) + 1 }
-                                : tutor
-                        )
-                    );
-                } else {
-                    Swal.fire('Error!', data.message, 'error');
-                }
+            .then(response => response.json())
+            .then(data => {
+                Swal.fire('Success!', 'Review updated successfully.', 'success');
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Error updating review:', error);
-                Swal.fire('Error!', 'Failed to submit the review.', 'error');
             });
     };
 
