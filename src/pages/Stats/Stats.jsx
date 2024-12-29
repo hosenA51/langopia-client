@@ -12,7 +12,7 @@ const Stats = () => {
             .then((data) => {
                 setTutorsCount(data.length);
 
-                const totalReviews = data.reduce((acc, tutor) => acc + (tutor.review || 0), 0);
+                const totalReviews = data.reduce((acc, tutor) => acc + (Number(tutor.review) || 0), 0);
                 setReviewsCount(totalReviews);
 
                 const allLanguages = data.flatMap((tutor) => tutor.language);
@@ -20,7 +20,7 @@ const Stats = () => {
                 setLanguagesCount(uniqueLanguages.size);
             });
 
-            fetch('http://localhost:3000/users/count')
+        fetch('http://localhost:3000/users/count')
             .then((res) => res.json())
             .then((data) => {
                 setTotalUsers(data.totalUsers);

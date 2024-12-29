@@ -27,18 +27,23 @@ const MyBookedTutors = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ review: 1 })
+            body: JSON.stringify({ review: 1 }),
         })
             .then(response => response.json())
-            .then(data => {
+            .then(() => {
                 Swal.fire('Success!', 'Review updated successfully.', 'success');
+        
+                fetch('http://localhost:3000/find-tutors')
+                    .then((res) => res.json())
+                    .then((data) => {
+                        const totalReviews = data.reduce((acc, tutor) => acc + (Number(tutor.review) || 0), 0);
+                        setReviewsCount(totalReviews);
+                    });
             })
             .catch(error => {
                 console.error('Error updating review:', error);
             });
     };
-
-
 
     return (
         <div className='bg-base-300 py-16'>
