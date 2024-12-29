@@ -31,7 +31,7 @@ const Stats = () => {
     }, []);
 
     return (
-        <section className="py-16 bg-base-200">
+        <section className="py-12 bg-base-200 border-b-4">
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 text-center">
                 <div className="bg-base-100 p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow">
                     <p className="text-3xl font-bold text-[#FF6363]">{tutorsCount}</p>

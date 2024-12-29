@@ -4,7 +4,6 @@ const Banner = () => {
     return (
         <div className="py-20 md:py-28 lg:pt-36 bg-gradient-to-t from-[#FFC8C8] to-[#FFFFFF] lg:h-[550px] rounded-b-[60px]">
             <div className='flex flex-col-reverse md:flex-row items-center justify-between w-10/12 mx-auto'>
-                {/* Text and Button */}
                 <div className="text-center md:text-left">
                     <motion.h1
                         animate={{ opacity: [0, 1], y: [-50, 0] }}
