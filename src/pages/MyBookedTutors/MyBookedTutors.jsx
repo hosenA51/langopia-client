@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyBookedTutors = () => {
     const { user } = useAuth();
     const [bookedTutors, setBookedTutors] = useState([]);
+    const [reviewsCount, setReviewsCount] = useState(0);
+
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:3000/booked-tutors?email=${user.email}`)
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error('Failed to fetch booked tutors');
-                    }
-                    return res.json();
-                })
-                .then(data => setBookedTutors(data))
-                .catch(error => console.error(error));
+            axiosSecure.get(`/booked-tutors?email=${user.email}`)
+                .then(res => setBookedTutors(res.data));
         }
     }, [user?.email]);
 
@@ -32,7 +29,7 @@ const MyBookedTutors = () => {
             .then(response => response.json())
             .then(() => {
                 Swal.fire('Success!', 'Review updated successfully.', 'success');
-        
+
                 fetch('http://localhost:3000/find-tutors')
                     .then((res) => res.json())
                     .then((data) => {

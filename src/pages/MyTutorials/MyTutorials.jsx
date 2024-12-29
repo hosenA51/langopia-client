@@ -3,15 +3,18 @@ import useAuth from "../../hooks/useAuth";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyTutorials = () => {
     const { user } = useAuth();
     const [tutorials, setTutorials] = useState([]);
 
+    const axiosSecure = useAxiosSecure();
+
     useEffect(() => {
-        fetch(`http://localhost:3000/tutorials?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setTutorials(data))
+        axiosSecure.get(`/tutorials?email=${user.email}`)
+        .then(res => setTutorials(res.data));
+
     }, [user.email])
 
     
