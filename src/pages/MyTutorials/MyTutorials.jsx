@@ -30,14 +30,14 @@ const MyTutorials = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // Delete the tutorial
-                fetch(`http://localhost:3000/tutorials/${_id}`, {
+                fetch(`https://langopia-server.vercel.app/tutorials/${_id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.deletedCount > 0) {
                             // Delete related booked tutors
-                            fetch(`http://localhost:3000/booked-tutors?tutorId=${_id}`, {
+                            fetch(`https://langopia-server.vercel.app/booked-tutors?tutorId=${_id}`, {
                                 method: "DELETE",
                             })
                                 .then(res => res.json())

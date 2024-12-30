@@ -19,7 +19,7 @@ const MyBookedTutors = () => {
 
 
     const handleReview = (tutorId) => {
-        fetch(`http://localhost:3000/tutorials/${tutorId.toString()}/review`, {
+        fetch(`https://langopia-server.vercel.app/tutorials/${tutorId.toString()}/review`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ const MyBookedTutors = () => {
             .then(() => {
                 Swal.fire('Success!', 'Review updated successfully.', 'success');
 
-                fetch('http://localhost:3000/find-tutors')
+                fetch('https://langopia-server.vercel.app/find-tutors')
                     .then((res) => res.json())
                     .then((data) => {
                         const totalReviews = data.reduce((acc, tutor) => acc + (Number(tutor.review) || 0), 0);

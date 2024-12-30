@@ -7,7 +7,7 @@ const Stats = () => {
     const [totalUsers, setTotalUsers] = useState(0);
 
     useEffect(() => {
-        fetch('http://localhost:3000/find-tutors')
+        fetch('https://langopia-server.vercel.app/find-tutors')
             .then((res) => res.json())
             .then((data) => {
                 setTutorsCount(data.length);
@@ -20,7 +20,7 @@ const Stats = () => {
                 setLanguagesCount(uniqueLanguages.size);
             });
 
-        fetch('http://localhost:3000/users/count')
+        fetch('https://langopia-server.vercel.app/users/count')
             .then((res) => res.json())
             .then((data) => {
                 setTotalUsers(data.totalUsers);

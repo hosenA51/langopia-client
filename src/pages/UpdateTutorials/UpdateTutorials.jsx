@@ -25,7 +25,7 @@ const UpdateTutorials = () => {
         const updatedTutorial = { user, email, tutorialName, language, price, image, description }
 
         // send data to the server
-        fetch(`http://localhost:3000/tutorials/${_id}`, {
+        fetch(`https://langopia-server.vercel.app/tutorials/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

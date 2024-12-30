@@ -78,14 +78,14 @@ const AuthProvider = ({ children }) => {
             if (currentUser?.email) {
                 const user = { email: currentUser.email };
 
-                axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+                axios.post('https://langopia-server.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         console.log('login token', res.data)
                         setLoading(false);
                     })
             }
             else {
-                axios.post('http://localhost:3000/logout', {}, {
+                axios.post('https://langopia-server.vercel.app/logout', {}, {
                     withCredentials: true
                 })
                     .then(res => {

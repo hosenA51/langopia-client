@@ -58,12 +58,12 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <UpdateTutorials></UpdateTutorials>
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/tutorials/${params.id}`)
+                loader: ({ params }) => fetch(`https://langopia-server.vercel.app/tutorials/${params.id}`)
             },
             {
                 path: "/tutor/details/:id",
                 element: <PrivateRoute><Details></Details></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:3000/tutorials/${params.id}`)
+                loader: ({ params }) => fetch(`https://langopia-server.vercel.app/tutorials/${params.id}`)
             }
         ]
     },

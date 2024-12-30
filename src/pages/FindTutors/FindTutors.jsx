@@ -11,7 +11,7 @@ const FindTutors = () => {
     const [filteredTutorials, setFilteredTutorials] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/find-tutors')
+        fetch('https://langopia-server.vercel.app/find-tutors')
             .then(res => res.json())
             .then(data => {
                 const filteredByCategory = category

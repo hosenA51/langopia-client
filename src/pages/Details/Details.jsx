@@ -11,7 +11,7 @@ const Details = () => {
     const { _id, language, tutorialName, email, price, image, description, review } = tutorial;
 
     useEffect(() => {
-        fetch(`http://localhost:3000/tutorials/${_id}`)
+        fetch(`https://langopia-server.vercel.app/tutorials/${_id}`)
             .then(res => res.json())
             .then(data => setTutorial(data));
     }, [_id]);
@@ -27,7 +27,7 @@ const Details = () => {
             review,
         };
 
-        const response = await fetch('http://localhost:3000/book-tutor', {
+        const response = await fetch('https://langopia-server.vercel.app/book-tutor', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(bookedTutor),

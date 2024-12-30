@@ -22,7 +22,7 @@ const AddTutorials = () => {
         const newTutorials = { user, email, tutorialName, language, price, review, image, description }
 
         // send data to the server
-        fetch('http://localhost:3000/tutorials', {
+        fetch('https://langopia-server.vercel.app/tutorials', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
