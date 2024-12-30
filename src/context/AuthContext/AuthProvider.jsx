@@ -4,7 +4,6 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import auth from '../../firebase/firebase.init';
 import axios from 'axios';
 
-// eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -32,6 +31,7 @@ const AuthProvider = ({ children }) => {
     const handleGoogleLogin = () => {
         setLoading(true);
         const provider = new GoogleAuthProvider();
+
         return signInWithPopup(auth, provider)
             .then(result => {
                 const loggedInUser = result.user;
@@ -41,13 +41,16 @@ const AuthProvider = ({ children }) => {
                     photoURL: loggedInUser.photoURL || null,
                 });
                 setLoading(false);
-                return result;
+                return result; 
             })
             .catch(error => {
                 setLoading(false);
-                throw error;
+                console.error('Google login error:', error); 
+                throw error; 
             });
     };
+
+
 
     const authInfo = {
         user,

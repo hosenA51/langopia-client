@@ -8,7 +8,6 @@ import AuthContext from '../../context/AuthContext/AuthContext';
 const Login = () => {
     const { signInUser, handleGoogleLogin } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
-    // const [error, setError] = useState("");
     const [email, setEmail] = useState('');
     const location = useLocation();
     const navigate = useNavigate();

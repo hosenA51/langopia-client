@@ -36,7 +36,7 @@ const HowItWorks = () => {
         <section className="py-16 bg-gradient-to-r from-base-100 to-base-300">
             <div className="max-w-screen-lg mx-auto px-4">
                 <animated.div style={fadeIn} className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-base-content mb-4">
+                    <h2 className="text-4xl font-bold text-[#FF6363] mb-4">
                         How It Works
                     </h2>
                     <p className="text-lg text-base-content">

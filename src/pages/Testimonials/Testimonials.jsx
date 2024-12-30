@@ -49,7 +49,7 @@ const Testimonials = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl font-bold text-base-content mb-4">What Our Users Say</h2>
+                    <h2 className="text-4xl font-bold text-[#FF6363] mb-4">What Our Users Say</h2>
                     <p className="text-lg text-base-content">Hear from our satisfied learners around the world.</p>
                 </motion.div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">

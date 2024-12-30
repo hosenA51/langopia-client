@@ -73,15 +73,15 @@ const MyTutorials = () => {
                 </div>
             ) : (
                 <table className="table">
-                    <thead className="text-lg font-bold">
+                    <thead className="text-[14px] md:text-lg font-bold">
                         <tr>
                             <th>#</th>
                             <th>Name</th>
                             <th>Image</th>
                             <th>Language</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Review</th>
+                            <th className="hidden md:table-cell">Price</th>
+                            <th className="hidden md:table-cell">Description</th>
+                            <th className="hidden md:table-cell">Review</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -98,9 +98,9 @@ const MyTutorials = () => {
                                     />
                                 </td>
                                 <td>{tutorial.language}</td>
-                                <td>${tutorial.price}</td>
-                                <td>{tutorial.description}</td>
-                                <td>{tutorial.review}</td>
+                                <td className="hidden md:table-cell">${tutorial.price}</td>
+                                <td className="hidden md:table-cell">{tutorial.description}</td>
+                                <td className="hidden md:table-cell">{tutorial.review}</td>
                                 <td className="flex flex-col gap-2 items-center">
                                     <button
                                         className="text-2xl text-orange-500"
