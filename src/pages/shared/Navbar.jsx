@@ -39,7 +39,7 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className={`navbar-container py-3 ${isHome ? 'absolute' : 'relative bg-base-200'} top-0 left-0 w-full z-10`}>
+        <div className={`navbar-container py-3 ${isHome ? 'absolute' : 'sticky bg-base-200'} top-0 left-0 w-full z-10`}>
             <div className="navbar w-11/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
