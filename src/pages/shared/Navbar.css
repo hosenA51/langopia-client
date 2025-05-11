@@ -45,6 +45,5 @@
 .navbar-container {
     position: sticky;
     top: 0;
-    z-index: 1000; /* নিশ্চিত করুন যে এটি অন্যান্য উপাদানের উপরে থাকে */
-    background-color: var(--background-color, white); /* প্রয়োজন অনুযায়ী ব্যাকগ্রাউন্ড দিন */
+    z-index: 1000; 
   }

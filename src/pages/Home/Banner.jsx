@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 
 const Banner = () => {
     return (
-        <div className="py-10 md:py-20 lg:pt-24 bg-gradient-to-t from-[#FFC8C8] to-[#FFFFFF] lg:h-[550px] rounded-b-[60px]">
+        <div className="py-10 md:py-20 lg:pt-24 bg-gradient-to-t from-[#FFC8C8] to-[#FFFFFF] dark:from-[#2d2d2d] dark:to-[#1a1a1a] lg:h-[550px] rounded-b-[60px]">
             <div className='flex flex-col-reverse md:flex-row items-center justify-between w-10/12 mx-auto'>
                 <div className="text-center md:text-left">
                     <motion.h1
                         animate={{ opacity: [0, 1], y: [-50, 0] }}
                         transition={{ duration: 1.5 }}
-                        className="text-5xl font-bold mb-6 text-gray-800"
+                        className="text-5xl font-bold mb-6 text-gray-800 dark:text-gray-400"
                     >
                         Welcome to{' '}
                         <span className="text-[#FF6363]">
