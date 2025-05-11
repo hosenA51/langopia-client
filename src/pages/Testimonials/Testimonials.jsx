@@ -40,12 +40,26 @@ const Testimonials = () => {
         },
     ];
 
+    const cardVariants = {
+        hidden: { opacity: 0, y: 40 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: i * 0.2,
+                duration: 0.6,
+                type: "spring",
+            },
+        }),
+    };
+
     return (
         <section className="py-16 bg-gradient-to-l from-base-100 to-base-300">
             <div className="max-w-screen-xl mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                     className="text-center mb-12"
                 >
@@ -57,8 +71,12 @@ const Testimonials = () => {
                         <motion.div
                             key={index}
                             className="relative bg-base-100 shadow-lg rounded-lg overflow-visible hover:shadow-xl transition-shadow duration-300"
+                            variants={cardVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            custom={index}
                             whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
                         >
                             <div className="relative flex justify-center">
                                 <div className="absolute -top-8">
