@@ -1,6 +1,7 @@
 import React from 'react';
 import { RiArrowRightDoubleLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Category = () => {
     const navigate = useNavigate();
@@ -23,23 +24,36 @@ const Category = () => {
     return (
         <section className="py-12 bg-base-200">
             <div className="max-w-screen-xl mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-8 text-[#FF6363]">Language Category</h2>
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="text-3xl font-bold text-center mb-8 text-[#FF6363]"
+                >
+                    Language Category
+                </motion.h2>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {categories.map((category) => (
-                        <div
+                    {categories.map((category, index) => (
+                        <motion.div
                             key={category.title}
                             className="flex items-center justify-between p-6 rounded-lg cursor-pointer shadow-lg hover:shadow-2xl transition-shadow"
                             style={{ backgroundColor: category.bgColor }}
                             onClick={() => handleCategoryClick(category.title)}
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.98 }}
                         >
                             <div className="flex items-center gap-4">
                                 <img src={category.logo} alt={category.title} className="w-12 h-12" />
                                 <h3 className="text-xl font-semibold">{category.title}</h3>
                             </div>
-                            <div className='text-3xl'>
-                            <RiArrowRightDoubleLine />
+                            <div className="text-3xl">
+                                <RiArrowRightDoubleLine />
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
