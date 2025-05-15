@@ -37,7 +37,7 @@ const FindTutors = () => {
     };
 
     return (
-        <div className=" py-8">
+        <div className=" py-8 lg:mx-24">
             <div className="mb-8 flex justify-center">
                 <input
                     type="text"
@@ -47,7 +47,7 @@ const FindTutors = () => {
                     className="input input-bordered w-full max-w-md"
                 />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredTutorials.length > 0 ? (
                     filteredTutorials.map(tutorial => (
                         <TutorCard key={tutorial._id} tutorial={tutorial}></TutorCard>

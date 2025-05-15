@@ -54,8 +54,8 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className={`navbar-container py-3 ${isHome ? 'absolute' : 'sticky bg-base-200'} top-0 left-0 w-full z-10`}>
-            <div className="navbar w-11/12 mx-auto">
+        <div className={`navbar-container py-3 ${isHome ? 'absolute' : 'sticky bg-base-200'} top-0 left-0 w-full z-10 backdrop-blur-md bg-white/70 dark:bg-black`}>
+            <div className="navbar w-11/12 mx-auto bg-transparent">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
