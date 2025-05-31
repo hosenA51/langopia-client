@@ -7,6 +7,7 @@ import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 import Banner from "./Banner";
 import LanguageGoals from "../LanguageGoals/LanguageGoals";
 import BlogHighlights from "../BlogHighlights/BlogHighlights";
+import { ContactUs } from "../ContactUs/ContactUs";
 
 const Home = () => {
     const categoryRef = useRef(null);
@@ -26,6 +27,7 @@ const Home = () => {
             <LanguageGoals></LanguageGoals>
             <BlogHighlights></BlogHighlights>
             <Testimonials></Testimonials>
+            <ContactUs></ContactUs>
         </div>
     );
 };
