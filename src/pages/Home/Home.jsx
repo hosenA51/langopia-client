@@ -5,6 +5,7 @@ import Stats from "../Stats/Stats";
 import Testimonials from "../Testimonials/Testimonials";
 import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 import Banner from "./Banner";
+import LanguageGoals from "../LanguageGoals/LanguageGoals";
 
 const Home = () => {
     const categoryRef = useRef(null);
@@ -21,6 +22,7 @@ const Home = () => {
             </div>
             <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>
+            <LanguageGoals></LanguageGoals>
             <Testimonials></Testimonials>
         </div>
     );
